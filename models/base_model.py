@@ -2,15 +2,16 @@
 """
 Parent class that will inherit
 """
-import uuid
+import models
+from uuid import uuid4
 from datetime import datetime
-from models import storage
 
 
 class BaseModel:
     """
     Defines all common attributes/methods
     """
+
     def __init__(self, *args, **kwargs):
         """Initialize a new BaseModel.
         Args:
@@ -30,8 +31,7 @@ class BaseModel:
         else:
             models.storage.new(self)
 
-
-   def __str__(self):
+    def __str__(self):
         """Return the print/str representation of the BaseModel instance."""
         clname = self.__class__.__name__
         return "[{}] ({}) {}".format(clname, self.id, self.__dict__)
