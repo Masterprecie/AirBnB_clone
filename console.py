@@ -7,15 +7,19 @@ import cmd
 from models import storage
 from models.base_model import BaseModel
 from models.user import User
+from models.place import Place
+from models.city import City
+from models.amenity import Amenity
+from models.state import State
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
     """Command processor"""
 
     prompt = "(hbnb) "
-    l_classes = ['BaseModel', 'User']
-
-    l_c = ['create', 'show', 'update', 'all', 'destroy']
+    l_classes = ['BaseModel', 'User', 'State',
+                 'Amenity', 'City', 'Place', 'Review']
 
     def emptyline(self):
         """do nothing when empty line"""
@@ -29,7 +33,9 @@ class HBNBCommand(cmd.Cmd):
         elif type_model not in HBNBCommand.l_classes:
             print("** class doesn't exist **")
         else:
-            dct = {'BaseModel': BaseModel, 'User': User}
+            dct = {'BaseModel': BaseModel, 'User': User, 'Place': Place,
+                   'City': City, 'Amenity': Amenity, 'State': State,
+                   'Review': Review}
             my_model = dct[type_model]()
             print(my_model.id)
             my_model.save()
@@ -40,7 +46,7 @@ class HBNBCommand(cmd.Cmd):
         if not arg:
             print("** class name missing **")
             return
-        
+
         args = arg.split(' ')
 
         if args[0] not in HBNBCommand.l_classes:
