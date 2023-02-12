@@ -7,6 +7,7 @@ and deserializes JSON file to instances
 import json
 from models.base_model import BaseModel
 
+
 class FileStorage:
     """Represent an abstracted storage engine.
     Attributes:
@@ -19,7 +20,7 @@ class FileStorage:
     def all(self):
         """Return the dictionary __objects."""
         return FileStorage.__objects
-    
+
     def new(self, obj):
         """Set in __objects obj with key <obj_class_name>.id"""
         ocname = obj.__class__.__name__
@@ -31,7 +32,7 @@ class FileStorage:
         objdict = {obj: odict[obj].to_dict() for obj in odict.keys()}
         with open(FileStorage.__file_path, "w") as f:
             json.dump(objdict, f)
-    
+
     def reload(self):
         """Deserialize the JSON file __file_path to __objects, if it exists."""
         try:
