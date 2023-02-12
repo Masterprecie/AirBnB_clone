@@ -11,6 +11,7 @@ class BaseModel:
     """
     Defines all common attributes/methods
     """
+
     def __init__(self, *args, **kwargs):
         """Initialize a new BaseModel.
         Args:
